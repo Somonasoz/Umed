@@ -1,8 +1,4 @@
-from tkinter import Menu
-
-from aiosmtplib.__main__ import port
 from flask import Flask, render_template, url_for, Response
-from flask import request
 import speedtest
 import json
 
@@ -10,9 +6,10 @@ app = Flask(__name__)
 
 
 def speed_test():
-    servers = [3212, 6699, 5243, 7575, 3783, 6883, 5354, 3402]
+    servers = [5243, 7575, 3783, 6883, 5354, 3402]
     threads = None
     s = speedtest.Speedtest()
+    
     try:
         s.get_servers(servers)
         
@@ -43,4 +40,4 @@ def test_page():
 def api():
     return speed_test()
 
-app.run(host='0.0.0.0', port=5000)
+app.run(debug=True)
